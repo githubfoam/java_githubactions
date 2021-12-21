@@ -91,4 +91,23 @@ jobs:
       run: |
         javac Sum.java
         java -cp . Sum                  
-        
+
+# https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Testing-against-different-platforms        
+  build-local-job:
+    name: "microsoft jdk distribution on ubuntu-latest"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        download_url="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.10%2B9/OpenJDK11U-jdk_x64_linux_hotspot_11.0.10_9.tar.gz"
+        wget -O $RUNNER_TEMP/java_package.tar.gz $download_url    
+    - uses: actions/setup-java@v2
+      with:
+        distribution: 'jdkfile'
+        jdkFile: ${{ runner.temp }}/java_package.tar.gz
+        java-version: '11.0.0'
+        architecture: x64
+    - name: "compile & run"    
+      run: |
+        javac Sum.java
+        java -cp . Sum          

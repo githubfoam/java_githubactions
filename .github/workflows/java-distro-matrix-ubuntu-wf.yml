@@ -8,13 +8,15 @@ on:
 jobs:      
 
   build-jdk-matrix-job:
-    name: "matrix jdk distribution"
+    # name: "matrix jdk distribution"
+    name: "Java ${{ matrix.Java }} (${{ matrix.distribution }}) sample"
+    name: "Java ${{ matrix.Java }} (${{ matrix.distribution }}) (${{ matrix.os }}) "
     strategy:
       matrix:
         os: [ubuntu-latest,windows-latest,macos-latest]
         distro: [microsoft,temurin,zulu,adopt-hotspot,adopt-openj9,liberica]
         jdk: ['17']
-        jdk-arch: [x64]   
+        # jdk-arch: [x64]   
     runs-on: ${{ matrix.os }} 
     steps:
     - uses: actions/checkout@v2
