@@ -14,7 +14,8 @@ jobs:
         os: [ubuntu-latest,windows-latest,macos-latest]
         distro: [microsoft,temurin,zulu,adopt-hotspot,adopt-openj9,liberica]
         jdk: ['17'] #major versions: 8, 11, 16, 17
-        jdk-arch: [x64,x86] 
+        jdk-arch: [x64]
+        # jdk-arch: [x64,x86] #NOK
         # java-pkg: [jdk]  
     runs-on: ${{ matrix.os }} 
     steps:
