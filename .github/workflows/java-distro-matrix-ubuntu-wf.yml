@@ -2,7 +2,7 @@ name: "java distro matrix ubuntu CI workflow"
 
 on:
   push:
-    branches: [ main ]
+    branches: [ test ]
 
 
 jobs:      
@@ -14,7 +14,7 @@ jobs:
         os: [ubuntu-latest,windows-latest,macos-latest]
         distro: [microsoft,temurin,zulu,adopt-hotspot,adopt-openj9,liberica]
         jdk: ['17'] #major versions: 8, 11, 16, 17
-        # jdk-arch: [x64,x86] 
+        jdk-arch: [x64,x86] 
         # java-pkg: [jdk]  
     runs-on: ${{ matrix.os }} 
     steps:
@@ -23,7 +23,7 @@ jobs:
       with:
         distribution: ${{ matrix.distro}}  # See 'Supported distributions' for available options
         java-version: ${{ matrix.jdk }} 
-        # architecture: ${{ matrix.jdk-arch }}  #x86 # optional - defaults to x64
+        architecture: ${{ matrix.jdk-arch }}  #x86 # optional - defaults to x64
         # java-package: ${{ matrix.jdk-pkg }} # optional (jdk or jre) - defaults to jdk
     - name: "compile"    
       run: |
