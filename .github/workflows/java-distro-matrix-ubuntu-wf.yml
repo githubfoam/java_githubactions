@@ -2,7 +2,7 @@ name: "java distro matrix ubuntu CI workflow"
 
 on:
   push:
-    branches: [ dev ]
+    branches: [ main ]
 
 
 jobs:      
@@ -12,9 +12,9 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest,windows-latest,macos-latest]
-        # os: [ubuntu-latest]
         distro: [microsoft,temurin,zulu,adopt-hotspot,adopt-openj9,liberica]
-        jdk: ['17']   
+        jdk: ['17']
+        jdk-arch: [x64]   
     runs-on: ${{ matrix.os }} 
     steps:
     - uses: actions/checkout@v2
@@ -22,6 +22,8 @@ jobs:
       with:
         distribution: ${{ matrix.distro}}  # See 'Supported distributions' for available options
         java-version: ${{ matrix.jdk }} 
+        # architecture: x86 # optional - defaults to x64
+        # java-package: jdk # optional (jdk or jre) - defaults to jdk
     - name: "compile"    
       run: |
         javac Sum.java
