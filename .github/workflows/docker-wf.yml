@@ -1,0 +1,46 @@
+name: "docker java CI workflow"
+
+
+on:
+  push:
+    branches: [ dev ]
+
+jobs:
+
+  ubuntu-latest-job:
+    name: "docker ubuntu latest"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node:
+         - alpine
+        #  - modsecurity
+        #  - clearlinux    
+    env:
+      distribution: "java"
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: |
+        hostnamectl status
+        lsb_release -a
+        lsb_release -d
+        cat /etc/lsb-release
+        cat /etc/issue
+        cat /etc/os-release
+        sudo apt-get install -y neofetch && neofetch      
+    - name: "build docker image"
+      run: |
+        dir=$(pwd)
+        cd $dir/dockerfiles
+        cd ${{matrix.node}}
+        echo "############################################"
+        echo "############################################"
+        echo "Building  ${{matrix.node}} dockerfile"
+        echo "############################################"
+        echo "############################################"        
+        docker build -t ${distribution}/${{matrix.node}} . 
+        docker image ls
+        docker image history ${distribution}/${{matrix.node}} 
+        docker system df -v               
+        docker image inspect ${distribution}/${{matrix.node}}              

@@ -1,0 +1,94 @@
+name: "java distro ubuntu CI workflow"
+
+on:
+  push:
+    branches: [ dev ]
+
+
+jobs:
+  
+# https://docs.github.com/en/free-pro-team@latest/actions/guides/building-and-testing-java-with-gradle  
+  build-Eclipse-Temurin-job:
+    name: "Eclipse Temurin jdk distribution on ubuntu-latest"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v2
+      with:
+        distribution: 'temurin' # See 'Supported distributions' for available options
+        java-version: '17'
+    - name: "compile"    
+      run: |
+        javac Sum.java
+        java -cp . Sum
+       
+  build-zulu-job:
+    name: "zulu jdk distribution on ubuntu-latest"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v2
+      with:
+        distribution: 'zulu' # See 'Supported distributions' for available options
+        java-version: '17'
+    - name: "compile"    
+      run: |
+        javac Sum.java
+        java -cp . Sum
+
+  build-adopt-hotspot-job:
+    name: "adopt-hotspot jdk distribution on ubuntu-latest"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt-hotspot' # See 'Supported distributions' for available options
+        java-version: '17'
+    - name: "compile"    
+      run: |
+        javac Sum.java
+        java -cp . Sum  
+
+  build-adopt-openj9-job:
+    name: "adopt-openj9 jdk distribution on ubuntu-latest"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt-openj9' # See 'Supported distributions' for available options
+        java-version: '17'
+    - name: "compile"    
+      run: |
+        javac Sum.java
+        java -cp . Sum 
+
+  build-liberica-job:
+    name: "liberica jdk distribution on ubuntu-latest"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v2
+      with:
+        distribution: 'liberica' # See 'Supported distributions' for available options
+        java-version: '17'
+    - name: "compile"    
+      run: |
+        javac Sum.java
+        java -cp . Sum
+
+  build-microsoft-job:
+    name: "microsoft jdk distribution on ubuntu-latest"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-java@v2
+      with:
+        distribution: 'microsoft' # See 'Supported distributions' for available options
+        java-version: '17'
+    - name: "compile"    
+      run: |
+        javac Sum.java
+        java -cp . Sum                  
+        
