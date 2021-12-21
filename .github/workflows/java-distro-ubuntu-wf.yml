@@ -94,7 +94,7 @@ jobs:
 
 # https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#Testing-against-different-platforms        
   build-local-job:
-    name: "microsoft jdk distribution on ubuntu-latest"
+    name: "Installing Java from local file on ubuntu-latest"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2

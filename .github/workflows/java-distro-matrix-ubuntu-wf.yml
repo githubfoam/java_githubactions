@@ -9,7 +9,7 @@ jobs:
 
   build-jdk-matrix-job:
     # name: "matrix jdk distribution"
-    name: "Java ${{ matrix.Java }} (${{ matrix.distribution }}) sample"
+    name: Java ${{ matrix.Java }} (${{ matrix.distribution }}) sample
     # name: "Java ${{ matrix.Java }} (${{ matrix.distribution }}) (${{ matrix.os }}) "
     strategy:
       matrix:
