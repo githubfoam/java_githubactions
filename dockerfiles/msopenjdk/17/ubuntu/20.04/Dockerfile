@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.authors="githubfoam"
 # https://docs.microsoft.com/en-us/java/openjdk/install#change-the-default-jdk-on-linux
 RUN set -eux \
     && apt-get update \
-    && apt-get install wget gnupg -y \
+    && apt-get install wget lsb-release -y \
     #add the repository
     && ubuntu_release=`lsb_release -rs` \
     && wget https://packages.microsoft.com/config/ubuntu/${ubuntu_release}/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
