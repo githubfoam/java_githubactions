@@ -1,0 +1,45 @@
+name: "msopenjdk debian docker java CI workflow"
+
+
+on:
+  push:
+    branches: [ test ]
+
+jobs:
+
+  ubuntu-latest-job:
+    name: "docker ubuntu latest"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        jdk : [msopenjdk]
+        ver: ['17']
+        distro: [debian]
+        rel: [stretch,buster,bullseye]   
+    env:
+      distribution: "java"
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: |
+        hostnamectl status
+        lsb_release -a
+        lsb_release -d
+        cat /etc/lsb-release
+        cat /etc/issue
+        cat /etc/os-release
+        sudo apt-get install -y neofetch && neofetch      
+    - name: "build docker image"
+      run: |
+        dir=$(pwd)
+        cd $dir/dockerfiles/${{matrix.jdk}}/${{matrix.ver}}/${{matrix.distro}}/${{matrix.rel}}
+        echo "############################################"
+        echo "############################################"
+        echo "Building  ${{matrix.jdk}}/${{matrix.ver}}/${{matrix.distro}}/${{matrix.rel}} dockerfile"
+        echo "############################################"
+        echo "############################################"        
+        docker build -t ${{matrix.distro}}/${{matrix.rel}}/${{matrix.jdk}}-${{matrix.ver}} . 
+        docker image ls
+        docker image history ${{matrix.distro}}/${{matrix.rel}}/${{matrix.jdk}}-${{matrix.ver}}
+        docker system df -v               
+        docker image inspect ${{matrix.distro}}/${{matrix.rel}}/${{matrix.jdk}}-${{matrix.ver}}                   

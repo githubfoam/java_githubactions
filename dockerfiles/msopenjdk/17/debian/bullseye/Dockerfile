@@ -11,7 +11,7 @@ RUN set -eux \
     && wget -q https://packages.microsoft.com/config/debian/9/prod.list -O /etc/apt/sources.list.d/microsoft-prod.list \
     && apt-get install apt-transport-https -y \
     && apt-get update \
-    && apt-get install msopenjdk-17 -y \
+    && apt-get install msopenjdk-$version -y \
     #Change the default JDK on Linux
     # && update-java-alternatives --set msopenjdk-17-amd64
     && update-java-alternatives --set msopenjdk-$version-amd64
