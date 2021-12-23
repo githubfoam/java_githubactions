@@ -1,6 +1,6 @@
 ARG UBUNTU_VERSION
 FROM ubuntu:$UBUNTU_VERSION
-# ARG JDK_VER=17
+
 ARG JDK_VER
 LABEL org.opencontainers.image.authors="githubfoam"
 
@@ -14,7 +14,7 @@ RUN set -eux \
     && dpkg -i packages-microsoft-prod.deb \
     && apt-get install apt-transport-https -y \
     && apt-get update -y \
-    && apt-get install msopenjdk-17 -y \
+    && apt-get install msopenjdk-JDK_VER -y \
     #Change the default JDK on Linux
     && update-java-alternatives --set msopenjdk-$JDK_VER-amd64
 
