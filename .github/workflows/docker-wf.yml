@@ -15,7 +15,7 @@ jobs:
         jdk : [msopenjdk]
         ver: ['17']
         distro: [debian]
-        rel: [stretch]
+        rel: [stretch,buster,bullseye]
         # node:
         #  - alpine #OK
         #  - debian
