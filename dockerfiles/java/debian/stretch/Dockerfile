@@ -2,6 +2,7 @@ FROM debian:stretch-slim
 # ARG version=17.0.1.12-1
 RUN set -eux \
     && apt-get update \
+    && apt-get install gnupg \
     && wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg \
     && install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/ \
     && wget -q https://packages.microsoft.com/config/debian/9/prod.list -O /etc/apt/sources.list.d/microsoft-prod.list \

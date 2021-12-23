@@ -35,11 +35,7 @@ jobs:
     - name: "build docker image"
       run: |
         dir=$(pwd)
-        cd $dir/dockerfiles
-        # ls -lai
-        # ls -lai ${{matrix.distro}}
-        # cd ${{matrix.distro}}
-        # cd ${{matrix.version}}
+        cd $dir/dockerfiles/java
         cd ${{matrix.distro}}/${{matrix.version}}
         echo "############################################"
         echo "############################################"
