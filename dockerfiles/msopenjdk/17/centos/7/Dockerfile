@@ -9,10 +9,9 @@ RUN set -eux \
     && yum update \
     && yum install msopenjdk-$version -y \
     #Change the default JDK on Linux
-    # && update-java-alternatives --set msopenjdk-$version-amd64
+    # && update-java-alternatives --set msopenjdk-$version
     && ls -lai /usr/lib/jvm/
 
 ENV LANG en_US.UTF-8
-# ENV JAVA_HOME /usr/lib/jvm/msopenjdk-17-amd64
-# ENV JAVA_HOME /usr/lib/jvm/msopenjdk-$version-amd64
-# ENV PATH "${JAVA_HOME}/bin:${PATH}"
+ENV JAVA_HOME /usr/lib/jvm/msopenjdk-$version
+ENV PATH "${JAVA_HOME}/bin:${PATH}"

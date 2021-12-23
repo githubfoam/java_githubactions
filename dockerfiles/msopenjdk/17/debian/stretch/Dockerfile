@@ -17,7 +17,5 @@ RUN set -eux \
     && update-java-alternatives --set msopenjdk-$version-amd64
 
 ENV LANG en_US.UTF-8
-# ENV JAVA_HOME /usr/lib/jvm/msopenjdk-17-amd64
 ENV JAVA_HOME /usr/lib/jvm/msopenjdk-$version-amd64
 ENV PATH "${JAVA_HOME}/bin:${PATH}"
-# ENV PATH=$PATH:/usr/lib/jvm/default-jvm/bin
