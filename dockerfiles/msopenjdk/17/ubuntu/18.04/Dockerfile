@@ -1,6 +1,7 @@
 ARG UBUNTU_VERSION
 FROM ubuntu:$UBUNTU_VERSION
-ARG JDK_VER=17
+# ARG JDK_VER=17
+ARG JDK_VER
 LABEL org.opencontainers.image.authors="githubfoam"
 
 # https://docs.microsoft.com/en-us/java/openjdk/install#change-the-default-jdk-on-linux
