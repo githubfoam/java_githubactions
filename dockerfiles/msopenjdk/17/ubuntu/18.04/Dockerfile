@@ -1,7 +1,7 @@
 ARG UBUNTU_VERSION
-ARG JDK_VER
 FROM ubuntu:$UBUNTU_VERSION
 
+ARG JDK_VER
 LABEL org.opencontainers.image.authors="githubfoam"
 
 # https://docs.microsoft.com/en-us/java/openjdk/install#change-the-default-jdk-on-linux
@@ -14,7 +14,7 @@ RUN set -eux \
     && dpkg -i packages-microsoft-prod.deb \
     && apt-get install apt-transport-https -y \
     && apt-get update -y \
-    && apt-get install msopenjdk-JDK_VER -y \
+    && apt-get install msopenjdk-$JDK_VER -y \
     #Change the default JDK on Linux
     && update-java-alternatives --set msopenjdk-$JDK_VER-amd64
 
