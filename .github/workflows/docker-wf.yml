@@ -37,7 +37,9 @@ jobs:
         dir=$(pwd)
         cd $dir/dockerfiles
         ls -lai
-        cd ${{matrix.distro}}/${{matrix.version}}
+        ls -lai ${{matrix.distro}}
+        cd ${{matrix.distro}}
+        cd ${{matrix.version}}
         echo "############################################"
         echo "############################################"
         echo "Building  ${{matrix.distro}}/${{matrix.version}} dockerfile"
