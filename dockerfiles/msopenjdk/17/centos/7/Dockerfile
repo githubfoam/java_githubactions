@@ -3,7 +3,7 @@ ARG version=17
 
 # https://docs.microsoft.com/en-us/java/openjdk/install
 RUN set -eux \
-    && yum update \
+    && yum update -y \
     #add the repository    
     &&  rpm -Uvh https://packages.microsoft.com/config/centos/7/packages-microsoft-prod.rpm \
     && yum update \

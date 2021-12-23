@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:latest
 WORKDIR /root/testdir
 ADD com /root/testdir/com
 
