@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM debian:bullseye-slim
 # ARG version=17.0.1.12-1
 RUN set -eux \
     && apt-get update \

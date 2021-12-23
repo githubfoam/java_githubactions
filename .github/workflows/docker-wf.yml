@@ -12,9 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node:
+        distro: [debian]
+        version: [stretch]
+        # node:
         #  - alpine #OK
-         - debian
+        #  - debian
         #  - modsecurity
         #  - clearlinux    
     env:
@@ -34,14 +36,29 @@ jobs:
       run: |
         dir=$(pwd)
         cd $dir/dockerfiles
-        cd ${{matrix.node}}
+        cd ${{matrix.distro}}/${{matrix.version}}
         echo "############################################"
         echo "############################################"
-        echo "Building  ${{matrix.node}} dockerfile"
+        echo "Building  ${{matrix.distro}}/${{matrix.version}} dockerfile"
         echo "############################################"
         echo "############################################"        
-        docker build -t ${distribution}/${{matrix.node}} . 
+        docker build -t ${matrix.distro}/${{matrix.version}} . 
         docker image ls
-        docker image history ${distribution}/${{matrix.node}} 
+        docker image history ${matrix.distro}/${{matrix.version}}
         docker system df -v               
-        docker image inspect ${distribution}/${{matrix.node}}              
+        docker image inspect ${matrix.distro}/${{matrix.version}}         
+    # - name: "build docker image"
+    #   run: |
+    #     dir=$(pwd)
+    #     cd $dir/dockerfiles
+    #     cd ${{matrix.node}}
+    #     echo "############################################"
+    #     echo "############################################"
+    #     echo "Building  ${{matrix.node}} dockerfile"
+    #     echo "############################################"
+    #     echo "############################################"        
+    #     docker build -t ${distribution}/${{matrix.node}} . 
+    #     docker image ls
+    #     docker image history ${distribution}/${{matrix.node}} 
+    #     docker system df -v               
+    #     docker image inspect ${distribution}/${{matrix.node}}              
