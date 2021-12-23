@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        app : [java]
+        app : [msopenjdk]
         distro: [debian]
         version: [stretch]
         # node:
