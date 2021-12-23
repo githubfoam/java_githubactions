@@ -13,7 +13,8 @@ jobs:
     strategy:
       matrix:
         node:
-         - alpine
+        #  - alpine #OK
+         - debian
         #  - modsecurity
         #  - clearlinux    
     env:
