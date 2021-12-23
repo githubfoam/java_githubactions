@@ -1,4 +1,5 @@
-FROM ubuntu:18.04
+ARG TAG="18.04"
+FROM ubuntu:$TAG
 ARG version=17
 LABEL org.opencontainers.image.authors="githubfoam"
 
