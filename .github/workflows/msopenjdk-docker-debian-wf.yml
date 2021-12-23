@@ -1,4 +1,4 @@
-name: "msopenjdk debian docker java CI workflow"
+name: "msopenjdk matrix debian docker java CI workflow"
 
 
 on:

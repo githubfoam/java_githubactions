@@ -1,4 +1,4 @@
-name: "msopenjdk centos docker java CI workflow"
+name: "msopenjdk matrix  centos docker java CI workflow"
 
 
 on:
@@ -15,7 +15,7 @@ jobs:
         jdk : [msopenjdk]
         ver: ['17']
         distro: [centos]
-        rel: ['7']   
+        rel: ['7','8']   
     env:
       distribution: "java"
     steps:

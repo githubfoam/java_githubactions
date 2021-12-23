@@ -1,4 +1,4 @@
-name: "msopenjdk ubuntu docker java CI workflow"
+name: "msopenjdk matrix ubuntu docker java CI workflow"
 
 
 on:
@@ -15,7 +15,7 @@ jobs:
         jdk : [msopenjdk]
         ver: ['17']
         distro: [ubuntu]
-        rel: ['18.04','20.04']   
+        rel: ['18.04','20.04','21.04']   
     env:
       distribution: "java"
     steps:
