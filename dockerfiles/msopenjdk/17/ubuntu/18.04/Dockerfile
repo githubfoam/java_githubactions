@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-ARG version=17
+ARG jdk-ver=17
 LABEL org.opencontainers.image.authors="githubfoam"
 
 # https://docs.microsoft.com/en-us/java/openjdk/install#change-the-default-jdk-on-linux
