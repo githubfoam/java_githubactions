@@ -1,4 +1,4 @@
-name: "msopenjdk matrix ubuntu docker java CI workflow"
+name: "msopenjdk matrix custom docker java CI workflow"
 
 
 on:
@@ -7,16 +7,15 @@ on:
 
 jobs:
 
-  ubuntu-latest-job:
+  ubuntu-custom-image-job:
     name: "docker ubuntu latest"
     runs-on: ubuntu-latest
     strategy:
       matrix:
         jdk : [msopenjdk]
-        ver: ['17','11','8']
+        ver: ['17']
         distro: [ubuntu]
-        rel: ['18.04','20.04']   
-        # rel: ['18.04','20.04','21.04'] 
+        rel: [app1,app2]   
     env:
       distribution: "java"
     steps:
