@@ -1,22 +1,24 @@
-FROM debian:buster-slim
-ARG version=17
+ARG DISTRO
+ARG DISTRO_VERSION
+FROM $DISTRO:$DISTRO_VERSION
 
-# https://docs.microsoft.com/en-us/java/openjdk/install
+ARG JDK_VER
+LABEL org.opencontainers.image.authors="githubfoam"
+
+# https://docs.microsoft.com/en-us/java/openjdk/install#change-the-default-jdk-on-linux
 RUN set -eux \
     && apt-get update \
-    && apt-get install wget gnupg -y \
+    && apt-get install wget lsb-release -y \
     #add the repository
-    && wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg \
-    && install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/ \
-    && wget -q https://packages.microsoft.com/config/debian/9/prod.list -O /etc/apt/sources.list.d/microsoft-prod.list \
+    && ubuntu_release=`lsb_release -rs` \
+    && wget https://packages.microsoft.com/config/ubuntu/${ubuntu_release}/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
+    && dpkg -i packages-microsoft-prod.deb \
     && apt-get install apt-transport-https -y \
-    && apt-get update \
-    && apt-get install msopenjdk-$version -y \
+    && apt-get update -y \
+    && apt-get install msopenjdk-$JDK_VER -y \
     #Change the default JDK on Linux
-    # && update-java-alternatives --set msopenjdk-17-amd64
-    && update-java-alternatives --set msopenjdk-$version-amd64
+    && update-java-alternatives --set msopenjdk-$JDK_VER-amd64
 
 ENV LANG en_US.UTF-8
-# ENV JAVA_HOME /usr/lib/jvm/msopenjdk-17-amd64
-ENV JAVA_HOME /usr/lib/jvm/msopenjdk-$version-amd64
+ENV JAVA_HOME /usr/lib/jvm/msopenjdk-$JDK_VER-amd64
 ENV PATH "${JAVA_HOME}/bin:${PATH}"

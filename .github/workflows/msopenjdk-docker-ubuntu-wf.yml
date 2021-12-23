@@ -13,8 +13,8 @@ jobs:
     strategy:
       matrix:
         jdk : [msopenjdk]
-        ver: ['17']
-        # ver: ['17','11']
+        # ver: ['17']
+        ver: ['17','11']
         # ver: ['17','11','8']
         distro: [ubuntu]
         rel: ['18.04']  
