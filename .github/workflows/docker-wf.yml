@@ -36,6 +36,7 @@ jobs:
       run: |
         dir=$(pwd)
         cd $dir/dockerfiles
+        ls -lai
         cd ${{matrix.distro}}/${{matrix.version}}
         echo "############################################"
         echo "############################################"
