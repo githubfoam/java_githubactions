@@ -39,7 +39,7 @@ jobs:
         cd $dir/dockerfiles/${{matrix.app}}/${{matrix.distro}}/${{matrix.version}}
         echo "############################################"
         echo "############################################"
-        echo "Building  ${{matrix.distro}}/${{matrix.version}} dockerfile"
+        echo "Building  ${{matrix.app}}/${{matrix.distro}}/${{matrix.version}} dockerfile"
         echo "############################################"
         echo "############################################"        
         docker build -t ${{matrix.distro}}/${{matrix.version}} . 

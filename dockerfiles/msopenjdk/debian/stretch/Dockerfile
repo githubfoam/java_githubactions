@@ -15,5 +15,6 @@ RUN set -eux \
     #Change the default JDK on Linux
     && update-java-alternatives --set msopenjdk-17-amd64
 
-ENV LANG C.UTF-8
-# ENV JAVA_HOME=/usr/lib/jvm/java-17-amazon-corretto
+ENV LANG en_US.UTF-8
+ENV JAVA_HOME /usr/lib/jvm/msopenjdk-17-amd64
+ENV PATH "${JAVA_HOME}/bin:${PATH}"
