@@ -36,20 +36,21 @@ jobs:
       run: |
         dir=$(pwd)
         cd $dir/dockerfiles
-        ls -lai
-        ls -lai ${{matrix.distro}}
-        cd ${{matrix.distro}}
-        cd ${{matrix.version}}
+        # ls -lai
+        # ls -lai ${{matrix.distro}}
+        # cd ${{matrix.distro}}
+        # cd ${{matrix.version}}
+        cd ${{matrix.distro}}/${{matrix.version}}
         echo "############################################"
         echo "############################################"
         echo "Building  ${{matrix.distro}}/${{matrix.version}} dockerfile"
         echo "############################################"
         echo "############################################"        
-        docker build -t ${matrix.distro}/${{matrix.version}} . 
+        docker build -t ${{matrix.distro}}/${{matrix.version}} . 
         docker image ls
-        docker image history ${matrix.distro}/${{matrix.version}}
+        docker image history ${{matrix.distro}}/${{matrix.version}} 
         docker system df -v               
-        docker image inspect ${matrix.distro}/${{matrix.version}}         
+        docker image inspect ${{matrix.distro}}/${{matrix.version}}          
     # - name: "build docker image"
     #   run: |
     #     dir=$(pwd)
