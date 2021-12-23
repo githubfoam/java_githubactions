@@ -43,7 +43,7 @@ jobs:
         echo "############################################"
         echo "############################################"        
         # docker build -t ${{matrix.distro}}/${{matrix.rel}}/${{matrix.jdk}}-${{matrix.ver}} . 
-        docker build . -t  ${{matrix.distro}}/${{matrix.rel}}/${{matrix.jdk}}-${{matrix.ver}} --build-arg jdk-ver=${{matrix.ver}}   
+        docker build . -t  ${{matrix.distro}}/${{matrix.rel}}/${{matrix.jdk}}-${{matrix.ver}} --build-arg UBUNTU_VERSION=${{matrix.rel}}  --build-arg jdk-ver=${{matrix.ver}}   
         docker image ls
         docker image history ${{matrix.distro}}/${{matrix.rel}}/${{matrix.jdk}}-${{matrix.ver}}
         docker system df -v               

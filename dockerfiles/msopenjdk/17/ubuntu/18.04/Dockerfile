@@ -1,5 +1,6 @@
-FROM ubuntu:18.04
-ARG jdk-ver=17
+ARG UBUNTU_VERSION
+FROM ubuntu:$UBUNTU_VERSION
+ARG JDK_VER=17
 LABEL org.opencontainers.image.authors="githubfoam"
 
 # https://docs.microsoft.com/en-us/java/openjdk/install#change-the-default-jdk-on-linux
@@ -14,8 +15,8 @@ RUN set -eux \
     && apt-get update -y \
     && apt-get install msopenjdk-17 -y \
     #Change the default JDK on Linux
-    && update-java-alternatives --set msopenjdk-$version-amd64
+    && update-java-alternatives --set msopenjdk-$JDK_VER-amd64
 
 ENV LANG en_US.UTF-8
-ENV JAVA_HOME /usr/lib/jvm/msopenjdk-$version-amd64
+ENV JAVA_HOME /usr/lib/jvm/msopenjdk-$JDK_VER-amd64
 ENV PATH "${JAVA_HOME}/bin:${PATH}"
