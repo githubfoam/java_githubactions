@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        app : [java]
         distro: [debian]
         version: [stretch]
         # node:
@@ -35,8 +36,7 @@ jobs:
     - name: "build docker image"
       run: |
         dir=$(pwd)
-        cd $dir/dockerfiles/java
-        cd ${{matrix.distro}}/${{matrix.version}}
+        cd $dir/dockerfiles/${{matrix.app}}/${{matrix.distro}}/${{matrix.version}}
         echo "############################################"
         echo "############################################"
         echo "Building  ${{matrix.distro}}/${{matrix.version}} dockerfile"
