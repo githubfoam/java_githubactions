@@ -13,8 +13,8 @@ jobs:
     strategy:
       matrix:
         jdk : [msopenjdk]
-        # ver: ['17','11'] #OK
-        ver: ['17','11','8']
+        ver: ['17','11'] #OK
+        # ver: ['17','11','8'] #Unable to locate package msopenjdk-8
         distro: [ubuntu]
         # rel: ['21.04'] #E: Unable to locate package msopenjdk-17  
         rel: ['18.04','20.04']   

@@ -13,7 +13,8 @@ jobs:
     strategy:
       matrix:
         jdk : [msopenjdk]
-        ver: ['17']
+        # ver: ['17'] #OK
+        ver: ['17','11'] 
         distro: [debian]
         rel: [stretch,buster,bullseye]   
     env:
