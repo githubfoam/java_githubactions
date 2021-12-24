@@ -14,7 +14,7 @@ jobs:
       matrix:
         jdk : [msopenjdk]
         ver: ['17']
-        distro: [ubuntu]
+        distro: [custom]
         rel: [app1,app2]   
     env:
       distribution: "java"
