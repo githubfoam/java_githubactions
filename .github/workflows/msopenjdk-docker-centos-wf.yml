@@ -13,7 +13,6 @@ jobs:
     strategy:
       matrix:
         jdk : [msopenjdk]
-        # ver: ['17'] #OK
         ver: ['17','11'] 
         distro: [centos]
         rel: ['7','8']   
