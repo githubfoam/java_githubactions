@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         jdk : [msopenjdk]
-        ver: ['17','11'] #OK
+        # ver: ['17','11'] #OK
         ver: ['17','11','8']
         distro: [ubuntu]
         # rel: ['21.04'] #E: Unable to locate package msopenjdk-17  
