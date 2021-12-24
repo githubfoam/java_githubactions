@@ -1,9 +1,9 @@
-name: "docker java CI workflow"
+name: "openjdk alpine docker java CI workflow"
 
 
 on:
   push:
-    branches: [ main ]
+    branches: [ test ]
 
 jobs:
 
@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node:
-         - alpine
-        #  - modsecurity
-        #  - clearlinux    
+        jdk : [openjdk]
+        ver: ['8']
+        distro: [alpine]
+        rel: ['3.15']  
     env:
       distribution: "java"
     steps:
@@ -32,15 +32,14 @@ jobs:
     - name: "build docker image"
       run: |
         dir=$(pwd)
-        cd $dir/dockerfiles
-        cd ${{matrix.node}}
+        cd $dir/dockerfiles/${{matrix.jdk}}/${{matrix.ver}}/${{matrix.distro}}/${{matrix.rel}}
         echo "############################################"
         echo "############################################"
-        echo "Building  ${{matrix.node}} dockerfile"
+        echo "Building  ${{matrix.jdk}}/${{matrix.ver}}/${{matrix.distro}}/${{matrix.rel}} dockerfile"
         echo "############################################"
         echo "############################################"        
-        docker build -t ${distribution}/${{matrix.node}} . 
+        docker build -t ${{matrix.distro}}/${{matrix.rel}}/${{matrix.jdk}}-${{matrix.ver}} . 
         docker image ls
-        docker image history ${distribution}/${{matrix.node}} 
+        docker image history ${{matrix.distro}}/${{matrix.rel}}/${{matrix.jdk}}-${{matrix.ver}}
         docker system df -v               
-        docker image inspect ${distribution}/${{matrix.node}}              
+        docker image inspect ${{matrix.distro}}/${{matrix.rel}}/${{matrix.jdk}}-${{matrix.ver}}                     

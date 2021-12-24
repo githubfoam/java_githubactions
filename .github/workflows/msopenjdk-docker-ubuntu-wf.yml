@@ -1,0 +1,48 @@
+name: "msopenjdk matrix ubuntu docker java CI workflow"
+
+
+on:
+  push:
+    branches: [ test ]
+
+jobs:
+
+  ubuntu-latest-job:
+    name: "docker ubuntu latest"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        jdk : [msopenjdk]
+        ver: ['17','11'] #OK
+        # ver: ['17','11','8'] #Unable to locate package msopenjdk-8
+        distro: [ubuntu]
+        # rel: ['21.04'] #E: Unable to locate package msopenjdk-17  
+        rel: ['18.04','20.04']   
+    env:
+      distribution: "java"
+    steps:
+    - uses: actions/checkout@v2
+    - name: "os fingerprinting"
+      run: |
+        hostnamectl status
+        lsb_release -a
+        lsb_release -d
+        cat /etc/lsb-release
+        cat /etc/issue
+        cat /etc/os-release
+        sudo apt-get install -y neofetch && neofetch      
+    - name: "build docker image"
+      run: |
+        dir=$(pwd)
+        cd $dir/dockerfiles/${{matrix.jdk}}/${{matrix.ver}}/${{matrix.distro}}/${{matrix.rel}}
+        echo "############################################"
+        echo "############################################"
+        echo "Building  ${{matrix.jdk}}/${{matrix.ver}}/${{matrix.distro}}/${{matrix.rel}} dockerfile"
+        echo "############################################"
+        echo "############################################"        
+        # docker build -t ${{matrix.distro}}/${{matrix.rel}}/${{matrix.jdk}}-${{matrix.ver}} . 
+        docker build . -t  ${{matrix.distro}}/${{matrix.rel}}/${{matrix.jdk}}-${{matrix.ver}} --build-arg DISTRO=${{matrix.distro}} --build-arg DISTRO_VERSION=${{matrix.rel}}  --build-arg JDK_VER=${{matrix.ver}}   
+        docker image ls
+        docker image history ${{matrix.distro}}/${{matrix.rel}}/${{matrix.jdk}}-${{matrix.ver}}
+        docker system df -v               
+        docker image inspect ${{matrix.distro}}/${{matrix.rel}}/${{matrix.jdk}}-${{matrix.ver}}                   
